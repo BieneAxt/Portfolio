@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonidas Flaounas | Portfolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- PrismJS CSS & Theme -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+
+    <!-- PrismJS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+
+    <!-- PrismJS Core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+
+    <!-- Lua Language -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-lua.min.js"></script>
+
+
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: scale(1.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .markdown-content h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .markdown-content h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+
+        .markdown-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .markdown-content p {
+            margin-bottom: 0.75rem;
+            color: #d4d4d8;
+        }
+
+        .markdown-content ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #d4d4d8;
+        }
+
+        .markdown-content ol {
+            list-style: decimal;
+            margin-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #d4d4d8;
+        }
+
+        .markdown-content code {
+            background: #3f3f46;
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            color: #e4e4e7;
+        }
+
+        .markdown-content pre {
+            background: #18181b;
+            color: #e4e4e7;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-bottom: 0.75rem;
+        }
+
+        .markdown-content pre code {
+            background: transparent;
+            color: inherit;
+        }
+
+        .markdown-content a {
+            color: #a1a1aa;
+            text-decoration: underline;
+        }
+
+        .tab-active {
+            background: #3f3f46;
+            color: white;
+        }
+
+        .modal-backdrop {
+            backdrop-filter: blur(4px);
+        }
+    </style>
+
+</head>
+
+<body class="bg-zinc-900 min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-zinc-900/90 backdrop-blur-md z-50 border-b border-zinc-800">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-white">LF</a>
+            <div class="flex gap-6">
+                <a href="#home" class="text-zinc-400 hover:text-white transition">Home</a>
+                <a href="#projekte" class="text-zinc-400 hover:text-white transition">Projekte</a>
+                <a href="#kontakt" class="text-zinc-400 hover:text-white transition">Kontakt</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mt-50 mb-5">
+                Leonidas Flaounas
+            </h1>
+            <p class="text-xl text-zinc-400 mb-80 max-w-2xl mx-auto">
+                Willkommen auf meinem Portfolio! Hier präsentiere ich meine Coding-Projekte aus Leidenschaft und Schule.
+            </p>
+            <a href="#projekte"
+                class="inline-block px-8 py-3 bg-zinc-700 hover:bg-zinc-600 text-white font-semibold rounded-full transition transform hover:scale-105 border border-zinc-600">
+                Projekte ansehen
+            </a>
+        </div>
+    </section>
+
+    <!-- Projekte Section -->
+    <section id="projekte" class="py-20 px-6 bg-gradient-to-b from-zinc-800 to-zinc-900">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-4 text-white">Meine Projekte</h2>
+            <p class="text-zinc-400 text-center mb-12">Eine Sammlung meiner bisherigen Arbeiten</p>
+
+            <!-- Tabs -->
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex bg-zinc-800 rounded-full p-1 border border-zinc-700">
+                    <button onclick="switchTab('eigen')" id="tab-eigen"
+                        class="px-6 py-2 rounded-full font-medium transition tab-active">
+                        Eigene Projekte
+                    </button>
+                    <button onclick="switchTab('schule')" id="tab-schule"
+                        class="px-6 py-2 rounded-full font-medium transition text-zinc-400 hover:text-white">
+                        Schulprojekte
+                    </button>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+
+            <div id="no-projects" class="hidden text-center py-16 text-zinc-500">
+                <svg class="w-16 h-16 mx-auto mb-4 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                    </path>
+                </svg>
+                <p>Noch keine Projekte in dieser Kategorie</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt Section -->
+    <section id="kontakt" class="py-20 px-6 bg-zinc-900">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-4 text-white">Kontakt</h2>
+            <p class="text-xl text-zinc-400 mb-8">Interesse an einer Zusammenarbeit? Schreib mir!</p>
+            <a href="mailto:leonidasflaounas@gmail.com"
+                class="inline-block px-8 py-3 bg-zinc-700 hover:bg-zinc-600 text-white font-semibold rounded-full transition transform hover:scale-105 border border-zinc-600">
+                E-Mail senden
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-950 text-zinc-500 py-8 px-6 text-center border-t border-zinc-800">
+        <p>&copy; 2025 Leonidas Flaounas</p>
+    </footer>
+
+    <!-- Project Detail Modal -->
+    <div id="detail-modal" class="fixed inset-0 bg-black/70 modal-backdrop hidden z-50 overflow-y-auto">
+        <div class="min-h-screen py-8 px-4 flex items-center justify-center">
+            <div
+                class="bg-zinc-800 rounded-2xl w-full max-w-6xl shadow-2xl border border-zinc-700 overflow-hidden relative">
+                <!-- Close Button -->
+                <button onclick="closeDetailModal()"
+                    class="absolute top-4 right-4 z-20 w-10 h-10 bg-zinc-700 hover:bg-zinc-600 rounded-full flex items-center justify-center text-zinc-300 hover:text-white shadow-lg text-xl: padding 20px">&times;</button>
+
+                <!-- Header -->
+                <div class="p-6 border-b border-zinc-700">
+                    <div class="flex flex-wrap justify-between items-center gap-3">
+                        <div class="flex items-center gap-4">
+                            <h2 id="detail-title" class="text-2xl lg:text-3xl font-bold text-white"></h2>
+                            <span id="detail-category" class="px-3 py-1 text-sm font-medium rounded-full"></span>
+                        </div>
+                        <div id="detail-tech" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+
+                <!-- Side by Side: BILD LINKS | TEXT RECHTS -->
+                <div class="flex flex-col lg:flex-row">
+                    <!-- LINKE SEITE: BILD -->
+                    <div
+                        class="lg:w-1/2 w-full bg-zinc-900 relative flex items-center justify-center min-h-[300px] lg:min-h-[450px]">
+                        <div id="detail-image-container" class="w-full h-full flex items-center justify-center p-4">
+                            <img id="detail-current-image" src="" alt="Projekt Bild"
+                                class="max-w-full max-h-[400px] object-contain rounded-lg">
+                        </div>
+                        <div id="no-image-placeholder" class="hidden text-8xl text-zinc-600">📁</div>
+
+                        <!-- Navigation Arrows -->
+                        <button onclick="prevSlide()" id="prev-btn"
+                            class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-zinc-700/90 hover:bg-zinc-600 rounded-full flex items-center justify-center text-white shadow-lg hidden z-10">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        <button onclick="nextSlide()" id="next-btn"
+                            class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-zinc-700/90 hover:bg-zinc-600 rounded-full flex items-center justify-center text-white shadow-lg hidden z-10">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                        </button>
+
+                        <!-- Slide Counter -->
+                        <div id="slide-counter"
+                            class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white text-sm px-4 py-2 rounded-full hidden">
+                            <span id="current-slide-num">1</span> / <span id="total-slides-num">1</span>
+                        </div>
+                    </div>
+
+                    <!-- RECHTE SEITE: TEXT -->
+                    <div class="lg:w-1/2 w-full p-6 lg:p-8 overflow-y-auto max-h-[50vh] lg:max-h-[450px] bg-zinc-800">
+                        <div id="detail-slide-content" class="markdown-content prose max-w-none"></div>
+
+                        <!-- Project Link -->
+                        <div id="detail-link-container" class="mt-6 pt-6 border-t border-zinc-700 hidden">
+                            <a id="detail-link" href="#" target="_blank"
+                                class="inline-flex items-center gap-2 text-zinc-300 hover:text-white font-medium">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                    </path>
+                                </svg>
+                                Projekt ansehen
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thumbnail Navigation -->
+                <div id="thumbnail-nav" class="p-4 border-t border-zinc-700 bg-zinc-900 hidden">
+                    <div id="thumbnails" class="flex gap-3 overflow-x-auto pb-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =====================================================
+        // PROJEKTE HIER MANUELL HINZUFÜGEN/BEARBEITEN
+        // =====================================================
+        const projects = [
+            {
+                id: 1,
+                name: "Floor Frenzy",
+                category: "eigen", // "eigen" oder "schule"
+                tech: ["Lua"],
+                link: "", // Optional: Link zum Projekt
+                slides: [
+                    {
+                        image: "/img/FloorFrenzy.png",
+                        text: "# Floor Frenzy\n Floor Frenzy ist ein selbst entwickeltes Multiplayer- Spiel auf Roblox. Die Spieler versuchen auf einer zerfallenden Plattform so lange wie möglich zu überleben. Das Spiel enthält mehrere Gamemodes, einen Item - Shop, ein Skin - und Color - System, sowie ein umfangreiches DataStore - Management."
+
+                    },
+                    {
+                        image: "/img/ColorGui.png",
+                        text: `## 🎨 Color-System
+- Auswahl- und Buy-Mechanik
+- Ownership-Prüfung (Besitzt man die Farbe?)
+- Dynamische UI
+- Lock-Icons
+
+### 💾 Server-Script: Ownership/Currency Prüfung
+
+\`\`\`lua
+Ownership/Currency Prüfung bei Kauf
+BuySelectedColor.OnServerInvoke = function(plr,colorName)
+    local colorData = colorModule.Color[colorName]
+    if colorData.Price and plr.leaderstats and plr.leaderstats:FindFirstChild("Coins") then
+        if plr.leaderstats.Coins.Value >= colorData.Price then
+            plr.leaderstats.Coins.Value -= colorData.Price 
+
+            local suc, inv = pcall(function()
+                return DSInventory:GetAsync(plr.UserId)
+            end)
+            if not inv then inv = {} end
+            if not inv.OwnedColors then inv.OwnedColors = {} end
+
+            inv.OwnedColors[colorName] = true
+            DSInventory:UpdateAsync(plr.UserId, function(old)
+                old = old or {}
+                old.OwnedColors = old.OwnedColors or {}
+                old.OwnedColors[colorName] = true
+                return old
+            end)
+            return true
+        else
+            print("Arme Mann nicht genug Coins!!!")
+        end
+    elseif colorData.GamepassId then
+        MSS:PromptGamePassPurchase(plr, colorData.GamepassId)
+        MSS.PromptGamePassPurchaseFinished:Connect(function(purchasingPlr, gamepassId, wasPurchased)
+            if purchasingPlr == plr and gamepassId == colorData.GamepassId and wasPurchased then
+                if wasPurchased then
+                    print(purchasingPlr.Name .. "hat Gamepass ".. gamepassId .." gekauft!")
+                    local suc, inv = pcall(function()
+                        return DSInventory:GetAsync(plr.UserId)
+                    end)
+                    if not suc then
+                        return false
+                    end
+
+                    inv.OwnedColors[colorName] = true
+                    plr:SetAttribute("EquippedColor", colorName)
+
+                    pcall(function()
+                        DSInventory:SetAsync(plr.UserId, inv)
+                    end)
+                    return true
+                else
+                    warn(plr.Name.." hat den Kauf abgebrochen!")
+                end
+            end
+        end)
+        return false
+    else
+        print("Kein Preis und Gamepass !!!")
+        return false
+    end
+end
+\`\`\`
+`
+                    },
+
+                    {
+                        image: "/img/SkinsGui.png",
+                        text: `## 🧊 Skin-System
+- Skin-Shop mit Preislogik  
+- Verschiedene Skins zur Auswahl mit unterschiedlichen Texturen & VFX  
+- Equip- und Kaufmechanik  
+- Sicherheitsvalidierung gegen Bugs & Exploits  
+- Speichern & Laden über DataStore  
+
+### 💾 Server-Skript: Skin-Handling
+
+\`\`\`lua
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+local DataStoreService = game:GetService("DataStoreService")
+
+local ShopSystem = ReplicatedStorage:WaitForChild("ShopSystem")
+local ShopBuyRemFunc = ShopSystem:WaitForChild("ShopBuySkin")
+local CheckSkinStatus = ShopSystem:WaitForChild("CheckSkinStatus")
+local EquipSkinFunc = ShopSystem:WaitForChild("EquipSkinFunc")
+
+local skinsModule = require(ReplicatedStorage:WaitForChild("Skins"))
+local DSInventory = DataStoreService:GetDataStore("Inventar")
+
+-- Inventory laden
+local function loadInventory(userId)
+    local success, data = pcall(function()
+        return DSInventory:GetAsync(tostring(userId))
+    end)
+    return (success and data) or {OwnedSkins = {}, EquippedSkin = nil}
+end
+
+-- Inventory speichern
+local function saveInventory(userId, data)
+    pcall(function()
+        DSInventory:SetAsync(tostring(userId), data)
+    end)
+end
+
+-- Prüfen, ob Spieler Skin besitzt
+local function CheckOwnedSkins(plr, skinName)
+    local inv = loadInventory(plr.UserId)
+    return inv.OwnedSkins[skinName] == true
+end
+
+-- Skin ausrüsten
+EquipSkinFunc.OnServerInvoke = function(plr, skinName)
+    if not CheckOwnedSkins(plr, skinName) then return false end
+    local inv = loadInventory(plr.UserId)
+    inv.EquippedSkin = skinName
+    saveInventory(plr.UserId, inv)
+    plr:SetAttribute("EquippedSkin", skinName)
+    return true
+end
+
+-- Status abfragen: kaufen/equippen/equippt
+CheckSkinStatus.OnServerInvoke = function(plr, skinName)
+    local skinData = skinsModule[skinName]
+    if not skinData then return "invalid" end
+    local owns = CheckOwnedSkins(plr, skinName)
+    local equipped = plr:GetAttribute("EquippedSkin")
+    if owns then
+        return (equipped == skinName) and "equipped" or "equip", 0
+    else
+        return "buy", skinData.Price or 0
+    end
+end
+
+-- Skin kaufen
+ShopBuyRemFunc.OnServerInvoke = function(plr, skinName)
+    local skinData = skinsModule[skinName]
+    if not skinData or CheckOwnedSkins(plr, skinName) then return false end
+    local coins = plr.leaderstats and plr.leaderstats:FindFirstChild("Coins")
+    if coins and coins.Value >= skinData.Price then
+        coins.Value -= skinData.Price
+        local inv = loadInventory(plr.UserId)
+        inv.OwnedSkins[skinName] = true
+        saveInventory(plr.UserId, inv)
+        return true
+    end
+    return false
+end
+\`\`\`
+`
+                    },
+
+                    {
+                        image: "/img/GameModes.png",
+                        text: `## 🕹️ Gamemode-System
+- Mehrere Spielmodi wie **Klassisch**, **Chaos** oder **Glücksblöcke**  
+- Dynamisches Votesystem  
+- Gewinnererkennung & Ranking  
+- Belohnungen in Coins & Wins  
+
+### 🔁 Server-Skript: Votesystem / Moduswahl
+
+\`\`\`lua
+-- Was passiert, wenn ein Spieler einen Modus wählt!
+local VoteEvt = ReplicatedStorage.RoundSystem:WaitForChild("VoteEvt")
+local VoteUpdate = ReplicatedStorage.RoundSystem:WaitForChild("VoteUpdate")
+
+local votes = {}
+local modes = {"Classic", "Luckyblocks", "Chaos"}
+local voteTime = 5
+
+-- Votes
+VoteEvt.OnServerEvent:Connect(function(plr, mode)
+    if not table.find(modes, mode) then return end
+
+    votes[plr.UserId] = mode
+
+    local voteCount = {Classic = 0, Luckyblocks = 0, Chaos = 0}
+    for _, v in pairs(votes) do
+        voteCount[v] += 1
+    end
+
+    VoteUpdate:FireAllClients(voteCount)
+end)
+\`\`\`
+`
+                    },
+                    {
+                        image: "/img/GameplayFloorFrenzy.gif",
+                        text: `## 🕹️ Gameplay - Showcase`
+                    }
+                ]
+            },
+            {
+                id: 2,
+                name: "Christmas Slap Tower",
+                category: "eigen",
+                tech: ["Lua"],
+                link: "",
+                slides: [
+                    {
+                        image: "/img/ChristmasTowerIcon.png",
+                        text: `# 🎄 Christmas Slap Tower
+Ein selbst entwickeltes weihnachtliches Jump-&-Run-Spiel, bei dem die Spieler einen Turm erklimmen.  
+Das Ziel: Ganz nach oben kommen, ohne runterzufallen und anschließend andere Spieler dabei zu hindern!`
+                    },
+                    {
+                        image: "/img/ChristmasTower1.png",
+                        text: `# Aufbau 1/3
+                        Bild vom Tower wie er ingame ausschaut`
+                    },
+                    {
+                        image: "/img/ChristmasTower2.png",
+                        text: `# Aufbau 2/3
+                        Bild vom Tower wie er ingame ausschaut`
+                    },
+                    {
+                        image: "/img/ChristmasTower3.png",
+                        text: `# Aufbau 3/3
+                        Bild vom Tower wie er ingame ausschaut`
+                    },
+                    {
+                        image: "/img/SlapGif.gif",
+                        text: `# 🎄 Christmas Slap Tower
+
+- **Schlagmechanismus**: Der Handschuh schwingt seitlich aus und trifft den Bereich, den die Spieler passieren müssen.
+- **Mechanik-Demo**: Spieler werden beim Kontakt zurückgestoßen.
+- **Timing & Rhythmus**: Der Schlag folgt einem festen Zyklus.
+
+**Lua Code des Hindernisses:**
+\`\`\`lua
+local PunchHand = script.Parent
+local HitSound = PunchHand:WaitForChild("Sound")
+
+local PunchDistance = 22
+local PunchSpeed = 0.25
+local PushForce = 2000 -- Stärke des Stoßes
+
+-- Statt Z-Achse jetzt X-Achse (nach links)
+local PunchVector = Vector3.new(-PunchDistance, 0, 0)
+
+local startPos = PunchHand.Position
+local endPos = startPos + PunchVector
+
+PunchHand.Touched:Connect(function(hit)
+	local character = hit.Parent
+	if character then
+		local humanoid = character:FindFirstChild("Humanoid")
+		local rootPart = character:FindFirstChild("HumanoidRootPart")
+
+		if humanoid and rootPart then
+			-- Stoßrichtung: nach links (statt relativ zum Spieler)
+			local pushDirection = Vector3.new(-1, 0, 0)
+
+			local bodyForce = Instance.new("BodyForce")
+			bodyForce.Force = pushDirection * PushForce
+			bodyForce.Parent = rootPart
+
+			HitSound:Play()
+
+			task.wait(0.1)
+			bodyForce:Destroy()
+		end
+	end
+end)
+
+while true do
+	task.wait(2.45)
+
+	-- Arm nach links bewegen
+	for i = 0, 1, PunchSpeed do
+		PunchHand.Position = startPos:Lerp(endPos, i)
+		task.wait()
+	end
+
+	-- Arm zurück zur Startposition
+	for i = 1, 0, -PunchSpeed do
+		PunchHand.Position = startPos:Lerp(endPos, i)
+		task.wait()
+	end
+end
+\`\`\``
+
+                    },
+
+
+                ]
+            },
+            {
+                id: 3,
+                name: "Betriebspraktikum",
+                category: "schule",
+                tech: ["C#", "Blazor", "Azure"],
+                link: "",
+                slides: [
+                    {
+                        image: "/img/Blazor3Homepage.png",
+                        text: `# Betriebspraktikum
+Im Rahmen dieses Projekts wurde eine bestehende Desktop-Anwendung (WPF) zur Dokumentation und Dosierung in der Opiat-Substitution in eine moderne, browserbasierte Webanwendung überführt. Ziel war eine ortsunabhängige Nutzung, zentrale Datenpflege und hohe Sicherheitsanforderungen, z. B. Azure Active Directory-Authentifizierung und Mandantentrennung pro Praxis.`
+                    },
+                    {
+                        image: "/img/Blazor2.png",
+                        text: `# Neuen Patienten Anlegen
+- Speichern Button Validiert die Eingaben von den Textfeldern und legt einen neuen Patienten in der Datenbank an.
+- Abbrechen Button Schließt den Dialog ohne Änderungen`
+                    },
+                    {
+                        image: "/img/Classes.png",
+                        text: `# Klassenansicht
+Während meines Praktikums musste ich besonders auf die strukturierte Arbeitsweise achten, also darauf, dass jeder Bereich der Anwendung klar getrennt und nachvollziehbar aufgebaut ist. Außerdem musste ich auf sauberen Code, konsistente Namensgebung und übersichtliche Dokumentation achten, damit das Projekt wartbar und erweiterbar bleibt.`
+                    },
+                ]
+            },
+            {
+                id: 4,
+                name: "Cyber Security Website",
+                category: "schule",
+                tech: ["HTML", "CSS", "JavaScript"],
+                link: "https://github.com/BieneAxt/MMPWebsite", // Hier der Link zum Projekt
+                slides: [
+                    {
+                        image: "/img/DS_Homepage.png",
+                        text: `# 🌐 Schulprojekt: Cybersicherheits-Website
+
+Im Rahmen eines Schulprojekts habe ich eine vollständige **Website für ein fiktives Unternehmen** entwickelt.  
+Ziel war es, die Mitarbeitenden über grundlegende und fortgeschrittene Themen der **Cybersicherheit** zu informieren.
+
+Die Seite umfasst:
+
+- Strukturierte Informationsbereiche  
+- Modernes, nutzerfreundliches Design  
+- Verständlich aufbereitete Inhalte zu Sicherheitsmaßnahmen, Bedrohungen und Best Practices im Unternehmensumfeld`
+                    },
+                    {
+                        image: "/img/DS_Sections.png",
+                        text: `# 🌐 Schulprojekt: Cybersicherheits-Website`
+                    },
+                    {
+                        image: "/img/DS_Form.png",
+                        text: `# 🌐 Schulprojekt: Cybersicherheits-Website`
+                    },
+                    {
+                        image: "/img/DS_Quiz.png",
+                        text: `# 🌐 Schulprojekt: Cybersicherheits-Website`
+                    },
+                    {
+                        image: "/img/DS_Login.png",
+                        text: `# Login-Dialog
+Der Login-Dialog ermöglicht es Benutzern, sich mit einem bestehenden Konto anzumelden oder ein neues Konto zu registrieren. Er besteht typischerweise aus Eingabefeldern für Benutzername/Email und Passwort, einem Login-Button und einem Registrieren-Link für neue Benutzer.
+Zur Sicherheit werden die eingegebenen Passwörter verschlüsselt übertragen und gespeichert, sodass sensible Daten geschützt sind. Außerdem kann der Dialog Fehler- und Validierungsnachrichten anzeigen, z. B. bei falschem Passwort oder ungültiger Eingabe, um die Benutzerfreundlichkeit zu erhöhen.`
+                    }
+                ]
+
+            },
+            {
+                id: 5,
+                name: "PW Generator",
+                category: "schule",
+                tech: ["C#", "WPF"],
+                slides: [
+                    {
+                        image: "/img/PasswortGen.png",
+                        text: `# 📝 Textgenerator
+
+Im Rahmen dieses Projekts habe ich einen **Textgenerator** entwickelt, der auf vorgegebenen Wörtern, Sätzen oder Mustern neue Texte erstellen kann.  
+Ziel war es, eine flexible Lösung zu schaffen, die sowohl für kreative Schreibprojekte als auch für Übungszwecke eingesetzt werden kann.
+
+## Funktionen
+
+- Generierung von Texten auf Basis von Wortlisten  
+- Anpassbare Satzlängen und Textlänge  
+- Unterstützung von Sonderzeichen, Zahlen und Groß-/Kleinschreibung  
+- Zufällige Kombinationen für kreative oder lustige Texte  
+- Möglichkeit, eigene Wortlisten oder Vorlagen zu laden  
+`
+                    },
+                    {
+                        image: "/img/PWGen.gif",
+                        text: `# Showcase
+                        Preview der Funktionen des Passwortgenerators`
+                    }
+                ]
+
+            },
+            // =====================================================
+            // NEUES PROJEKT HINZUFÜGEN:
+            // Kopiere das Template unten und fülle es aus
+            // =====================================================
+            /*
+            {
+                id: 3, // Eindeutige ID (nächste freie Zahl)
+                name: "Projektname",
+                category: "eigen", // "eigen" oder "schule"
+                tech: ["Tech1", "Tech2", "Tech3"],
+                link: "", // Optional
+                slides: [
+                    {
+                        image: "pfad/zum/bild.png",
+                        text: "## Überschrift\n\nBeschreibung hier...\n\n- Punkt 1\n- Punkt 2"
+                    },
+                    // Weitere Slides hier...
+                ]
+            },
+            */
+        ];
+        // =====================================================
+        // AB HIER NICHTS ÄNDERN
+        // =====================================================
+
+        let currentTab = 'eigen';
+        let currentDetailProject = null;
+        let currentSlideIndex = 0;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProjects();
+        });
+
+        function switchTab(tab) {
+            currentTab = tab;
+            document.getElementById('tab-eigen').className = tab === 'eigen'
+                ? 'px-6 py-2 rounded-full font-medium transition tab-active'
+                : 'px-6 py-2 rounded-full font-medium transition text-zinc-400 hover:text-white';
+            document.getElementById('tab-schule').className = tab === 'schule'
+                ? 'px-6 py-2 rounded-full font-medium transition tab-active'
+                : 'px-6 py-2 rounded-full font-medium transition text-zinc-400 hover:text-white';
+            renderProjects();
+        }
+
+        function renderProjects() {
+            const grid = document.getElementById('projects-grid');
+            const noProjects = document.getElementById('no-projects');
+            const filtered = projects.filter(p => p.category === currentTab);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noProjects.classList.remove('hidden');
+                return;
+            }
+
+            noProjects.classList.add('hidden');
+            grid.innerHTML = filtered.map(project => {
+                const firstImage = project.slides && project.slides.length > 0 ? project.slides[0].image : null;
+                const slideCount = project.slides ? project.slides.length : 0;
+
+                return `
+                <div class="bg-zinc-800 rounded-xl shadow-md overflow-hidden card-hover cursor-pointer border border-zinc-700" onclick="openDetail(${project.id})">
+                    <div class="h-100 bg-zinc-900 relative overflow-hidden">
+                        ${firstImage
+                        ? `<img src="${firstImage}" alt="${project.name}" class="w-full h-full object-cover">`
+                        : `<div class="w-full h-full flex items-center justify-center text-6xl text-zinc-600">📁</div>`
+                    }
+                        ${slideCount > 1
+                        ? `<div class="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">${slideCount} Bilder</div>`
+                        : ''
+                    }
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2 text-white">${project.name}</h3>
+                        <div class="flex flex-wrap gap-1 mb-3">
+                            ${(project.tech || []).slice(0, 3).map(t => `<span class="px-2 py-0.5 bg-zinc-700 text-zinc-300 text-xs rounded-full">${t}</span>`).join('')}
+                            ${(project.tech || []).length > 3 ? `<span class="px-2 py-0.5 bg-zinc-700 text-zinc-400 text-xs rounded-full">+${project.tech.length - 3}</span>` : ''}
+                        </div>
+                        <p class="text-zinc-400 text-sm line-clamp-2">${project.slides && project.slides.length > 0 ? project.slides[0].text.replace(/[#*`\[\]]/g, '').substring(0, 80) + '...' : 'Keine Beschreibung'}</p>
+                    </div>
+                </div>
+            `}).join('');
+        }
+
+        function openDetail(id) {
+            const project = projects.find(p => p.id === id);
+            if (!project) return;
+
+            currentDetailProject = project;
+            currentSlideIndex = 0;
+
+            document.getElementById('detail-title').textContent = project.name;
+
+            const categoryEl = document.getElementById('detail-category');
+            categoryEl.textContent = project.category === 'eigen' ? 'Eigenes Projekt' : 'Schulprojekt';
+            categoryEl.className = project.category === 'eigen'
+                ? 'px-3 py-1 text-sm font-medium rounded-full bg-zinc-700 text-zinc-300'
+                : 'px-3 py-1 text-sm font-medium rounded-full bg-zinc-600 text-zinc-200';
+
+            // document.getElementById('detail-tech').innerHTML = (project.tech || [])
+            //     .map(t => `<span class="px-3 py-1 mr-15 bg-zinc-700 text-zinc-300 text-sm rounded-full">${t}</span>`)
+            //     .join('');
+
+            const linkContainer = document.getElementById('detail-link-container');
+            const linkEl = document.getElementById('detail-link');
+            if (project.link) {
+                linkEl.href = project.link;
+                linkContainer.classList.remove('hidden');
+            } else {
+                linkContainer.classList.add('hidden');
+            }
+
+            renderThumbnails(project.slides || []);
+            updateDetailSlide();
+
+            document.getElementById('detail-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function renderThumbnails(slides) {
+            const nav = document.getElementById('thumbnail-nav');
+            const container = document.getElementById('thumbnails');
+
+            if (slides.length <= 1) {
+                nav.classList.add('hidden');
+                return;
+            }
+
+            nav.classList.remove('hidden');
+            container.innerHTML = slides.map((slide, index) => `
+                <button onclick="goToSlide(${index})" class="flex-shrink-0 w-30 h-21 rounded-lg overflow-hidden border-2 ${index === 0 ? 'border-white' : 'border-transparent'} hover:border-zinc-400 transition" id="thumb-${index}">
+                    ${slide.image
+                    ? `<img src="${slide.image}" alt="Slide ${index + 1}" class="w-full h-full object-cover">`
+                    : `<div class="w-full h-full bg-zinc-700 flex items-center justify-center text-zinc-400 text-xs">${index + 1}</div>`
+                }
+                </button>
+            `).join('');
+        }
+
+        function updateDetailSlide() {
+            const slides = currentDetailProject.slides || [];
+            const slide = slides[currentSlideIndex];
+
+            const imageContainer = document.getElementById('detail-image-container');
+            const noImagePlaceholder = document.getElementById('no-image-placeholder');
+            const currentImage = document.getElementById('detail-current-image');
+            const slideContent = document.getElementById('detail-slide-content');
+
+            if (!slide) {
+                imageContainer.classList.add('hidden');
+                noImagePlaceholder.classList.remove('hidden');
+                slideContent.innerHTML = '<p class="text-zinc-500">Keine Beschreibung vorhanden</p>';
+                return;
+            }
+
+            // Bild
+            if (slide.image) {
+                currentImage.src = slide.image;
+                imageContainer.classList.remove('hidden');
+                noImagePlaceholder.classList.add('hidden');
+            } else {
+                imageContainer.classList.add('hidden');
+                noImagePlaceholder.classList.remove('hidden');
+            }
+
+            // Text
+            // Text
+            slideContent.innerHTML = marked.parse(slide.text || '*Keine Beschreibung*');
+
+            // Prism Highlight aktivieren
+            slideContent.querySelectorAll('pre code').forEach((block) => {
+                Prism.highlightElement(block);
+            });
+
+            // Navigation Buttons
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const counter = document.getElementById('slide-counter');
+
+            if (slides.length > 1) {
+                prevBtn.classList.remove('hidden');
+                nextBtn.classList.remove('hidden');
+                counter.classList.remove('hidden');
+                document.getElementById('current-slide-num').textContent = currentSlideIndex + 1;
+                document.getElementById('total-slides-num').textContent = slides.length;
+            } else {
+                prevBtn.classList.add('hidden');
+                nextBtn.classList.add('hidden');
+                counter.classList.add('hidden');
+            }
+
+            // Thumbnails aktualisieren
+            document.querySelectorAll('#thumbnails button').forEach((thumb, i) => {
+                thumb.className = thumb.className.replace(/border-(white|transparent)/g,
+                    i === currentSlideIndex ? 'border-white' : 'border-transparent');
+            });
+        }
+
+        function prevSlide() {
+            const slides = currentDetailProject.slides || [];
+            currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+            updateDetailSlide();
+        }
+
+        function nextSlide() {
+            const slides = currentDetailProject.slides || [];
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            updateDetailSlide();
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateDetailSlide();
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+            currentDetailProject = null;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeDetailModal();
+            }
+            if (e.key === 'ArrowLeft' && currentDetailProject) {
+                prevSlide();
+            }
+            if (e.key === 'ArrowRight' && currentDetailProject) {
+                nextSlide();
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+    </script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <!-- Lightbox Overlay -->
+    <div id="lightbox"
+        class="fixed inset-0 bg-black/90 flex items-center justify-center hidden z-[100] cursor-zoom-out">
+        <img id="lightbox-img" src="" class="max-w-full max-h-full rounded-lg shadow-xl">
+    </div>
+
+    <script>
+        // Lightbox öffnen beim Klick auf Bild
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        document.getElementById('detail-current-image').addEventListener('click', () => {
+            if (currentDetailProject && currentDetailProject.slides[currentSlideIndex].image) {
+                lightboxImg.src = currentDetailProject.slides[currentSlideIndex].image;
+                lightbox.classList.remove('hidden');
+            }
+        });
+
+        // Lightbox schließen beim Klick
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.add('hidden');
+            lightboxImg.src = '';
+        });
+
+        // Markdown links automatisch anklickbar
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' && e.target.href.startsWith('http')) {
+                window.open(e.target.href, '_blank');
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+
+</html>
