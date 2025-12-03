@@ -9,6 +9,11 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css">
     <!-- PrismJS CSS & Theme -->
     <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
 
@@ -118,6 +123,26 @@
 
         .modal-backdrop {
             backdrop-filter: blur(4px);
+        }
+
+        /* ===== Moderne Dark Scrollbar ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #18181b;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #52525b, #3f3f46);
+            border-radius: 10px;
+            border: 2px solid #18181b;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #71717a, #52525b);
         }
     </style>
 
@@ -684,7 +709,7 @@ Ziel war es, eine flexible Lösung zu schaffen, die sowohl für kreative Schreib
                     {
                         image: "/img/PWGen.gif",
                         text: `# Showcase
-                        Preview der Funktionen des Passwortgenerators`
+Preview der Funktionen des Passwortgenerators`
                     }
                 ]
 
@@ -861,8 +886,9 @@ Ziel war es, eine flexible Lösung zu schaffen, die sowohl für kreative Schreib
 
             // Prism Highlight aktivieren
             slideContent.querySelectorAll('pre code').forEach((block) => {
-                Prism.highlightElement(block);
+                hljs.highlightElement(block);
             });
+
 
             // Navigation Buttons
             const prevBtn = document.getElementById('prev-btn');
